@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.shahankbhat.backgroundtasks">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BackgroundTasks">
+        <activity android:name=".ui.work_manager.ActivityWorkManager"></activity>
+        <activity android:name=".ui.job_intent_service.ActivityJobIntentService" />
+
+        <service
+            android:name=".ui.job_intent_service.MyJobIntentService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".ui.intet_service.MyIntentService"
+            android:exported="false" />
+
+        <activity android:name=".ui.intet_service.ActivityIntentService" />
+        <activity android:name=".ui.local_broadcast_manager.ActivityB" />
+        <activity android:name=".ui.local_broadcast_manager.ActivityA" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
