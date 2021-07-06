@@ -6,9 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.shahankbhat.backgroundtasks.R
@@ -25,9 +23,9 @@ class ActivityIntentService : AppCompatActivity() {
     private val mMessageReceiver: BroadcastReceiver = object : BroadcastReceiver() {
 
         override fun onReceive(context: Context?, intent: Intent) {
-            val hashCode = intent.extras?.getString("hashCode")
+            val message = intent.extras?.getString("message")
             val logMessage = getLogTimeStamp()
-            logBoardTextView.append("$logMessage - hashcode : $hashCode \n")
+            logBoardTextView.append("$logMessage - $message\n")
         }
 
     }
@@ -46,7 +44,7 @@ class ActivityIntentService : AppCompatActivity() {
         // Register Local BroadCast Receiver
         localBroadcastManager.registerReceiver(
             mMessageReceiver,
-            IntentFilter(INTENT_SERVICE_ACTION)
+            IntentFilter(ACTION_BC_MANAGER_INTENT_SERVICE)
         )
 
         logBoardTextView = findViewById(R.id.log_board)

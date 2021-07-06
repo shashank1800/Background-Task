@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BackgroundTasks">
-        <activity android:name=".ui.work_manager.ActivityWorkManager"></activity>
+        <activity android:name=".ui.bound_service.ActivityBoundService"></activity>
+        <activity android:name=".ui.ServiceHelperActivity" />
+
+        <service
+            android:name=".ui.bound_service.MyBoundService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ui.work_manager.ActivityWorkManager" />
         <activity android:name=".ui.job_intent_service.ActivityJobIntentService" />
 
         <service

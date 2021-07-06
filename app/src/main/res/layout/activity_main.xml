@@ -32,6 +32,13 @@
             android:text="Job Intent Service" />
 
         <Button
+            android:id="@+id/btn_bound_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="Bound Service" />
+
+        <Button
             android:id="@+id/btn_work_manager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

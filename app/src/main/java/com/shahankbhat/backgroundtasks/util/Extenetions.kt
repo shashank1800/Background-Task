@@ -30,3 +30,11 @@ fun Context.sendBroadcastMessage(action: String, hashCode: String){
     val localBroadcastManager = LocalBroadcastManager.getInstance(this)
     localBroadcastManager.sendBroadcast(intent)
 }
+
+fun Context.sendMessages(action: String, message: String){
+    val intent = Intent(action)
+    intent.putExtra("message", message)
+
+    val localBroadcastManager = LocalBroadcastManager.getInstance(this)
+    localBroadcastManager.sendBroadcast(intent)
+}
