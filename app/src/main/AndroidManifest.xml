@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BackgroundTasks">
         <activity android:name=".ui.bound_service.ActivityBoundService"></activity>
-        <activity android:name=".ui.ServiceHelperActivity" />
 
         <service
             android:name=".ui.bound_service.MyBoundService"

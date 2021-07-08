@@ -73,7 +73,15 @@ class MyBoundService : Service() {
             "onUnbind()"
         )
 
-        return super.onUnbind(intent)
+        return true
+    }
+
+    override fun onRebind(intent: Intent?) {
+        super.onRebind(intent)
+        applicationContext.sendMessages(
+            ACTION_BC_MANAGER,
+            "onRebind()"
+        )
     }
 
     override fun onDestroy() {

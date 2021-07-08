@@ -64,13 +64,15 @@ class MyIntentService : IntentService("MyIntentService") {
         )
     }
 
+    private val myBinder = MyBinder()
+
     override fun onBind(intent: Intent?): IBinder? {
 
         applicationContext.sendMessages(
             ACTION_BC_MANAGER_INTENT_SERVICE,
             "onBind()"
         )
-        return null
+        return myBinder
     }
 
     inner class MyBinder : Binder(){
