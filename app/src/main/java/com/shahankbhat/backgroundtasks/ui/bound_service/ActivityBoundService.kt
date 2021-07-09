@@ -7,7 +7,6 @@ import android.os.IBinder
 import androidx.databinding.DataBindingUtil
 import com.shahankbhat.backgroundtasks.R
 import com.shahankbhat.backgroundtasks.databinding.ActivityBoundServiceBinding
-import com.shahankbhat.backgroundtasks.ui.intet_service.ACTION_BC_MANAGER_INTENT_SERVICE
 import com.shahankbhat.backgroundtasks.ui.intet_service.MyIntentService
 import com.shahankbhat.backgroundtasks.util.regLocalBroadcastManager
 import com.shahankbhat.backgroundtasks.util.unRegLocalBroadcastManager
@@ -35,8 +34,7 @@ class ActivityBoundService : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_bound_service)
-        applicationContext.regLocalBroadcastManager(ACTION_BC_MANAGER, mMessageReceiver)
-        applicationContext.regLocalBroadcastManager(ACTION_BC_MANAGER_INTENT_SERVICE, mMessageReceiver)
+        applicationContext.regLocalBroadcastManager(mMessageReceiver)
 
         val myBoundService = Intent(applicationContext, MyBoundService::class.java)
 
@@ -70,13 +68,6 @@ class ActivityBoundService : AppCompatActivity() {
                 serviceConnection,
                 Context.BIND_AUTO_CREATE
             )
-
-            val aa = Intent(applicationContext, MyIntentService::class.java)
-            bindService(
-                aa,
-                serviceConnectionc,
-                Context.BIND_AUTO_CREATE
-            )
         }
 
         binding.btnCancelBoundService2.setOnClickListener {
@@ -93,16 +84,6 @@ class ActivityBoundService : AppCompatActivity() {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             myBoundService =
                 (service as MyBoundService.MyBinder).getService()
-
-        }
-
-        override fun onServiceDisconnected(name: ComponentName?) {
-        }
-    }
-
-    private val serviceConnectionc = object : ServiceConnection {
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-
 
         }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.shahankbhat.backgroundtasks.ui.bound_service.ActivityBoundService
+import com.shahankbhat.backgroundtasks.ui.forground_service.ActivityForegroundService
 import com.shahankbhat.backgroundtasks.ui.intet_service.ActivityIntentService
 import com.shahankbhat.backgroundtasks.ui.job_intent_service.ActivityJobIntentService
 import com.shahankbhat.backgroundtasks.ui.local_broadcast_manager.ActivityA
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_work_manager).setOnClickListener {
             startActivity(Intent(applicationContext, ActivityWorkManager::class.java))
+        }
+
+        findViewById<Button>(R.id.btn_foreground_service).setOnClickListener {
+            startActivity(Intent(applicationContext, ActivityForegroundService::class.java))
         }
 
     }

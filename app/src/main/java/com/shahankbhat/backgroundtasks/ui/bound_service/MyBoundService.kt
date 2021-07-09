@@ -4,11 +4,9 @@ import android.app.Service
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
-import com.shahankbhat.backgroundtasks.ui.intet_service.ACTION_BC_MANAGER_INTENT_SERVICE
+import com.shahankbhat.backgroundtasks.util.ACTION_BC_MANAGER
 import com.shahankbhat.backgroundtasks.util.sendMessages
 
-const val ACTION_BC_MANAGER =
-    "bound_service.action.ACTION_FOR_BC_MANAGER"
 
 class MyBoundService : Service() {
 
@@ -20,11 +18,7 @@ class MyBoundService : Service() {
     private val myBinder = MyBinder()
 
     override fun onBind(intent: Intent): IBinder {
-
-        applicationContext.sendMessages(
-            ACTION_BC_MANAGER,
-            "onBind()"
-        )
+        applicationContext.sendMessages("onBind()")
         return myBinder
     }
 
@@ -38,59 +32,38 @@ class MyBoundService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        applicationContext.sendMessages(
-            ACTION_BC_MANAGER,
-            "onCreate()"
-        )
+        applicationContext.sendMessages("onCreate()")
     }
 
     override fun onStart(intent: Intent?, startId: Int) {
         super.onStart(intent, startId)
 
-        applicationContext.sendMessages(
-            ACTION_BC_MANAGER,
-            "onStart()"
-        )
+        applicationContext.sendMessages("onStart()")
 
-        if (intent?.action == ACTION_BC_MANAGER_INTENT_SERVICE) {
+        if (intent?.action == ACTION_BC_MANAGER) {
             handleActionFoo()
         }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        applicationContext.sendMessages(
-            ACTION_BC_MANAGER,
-            "onStartCommand()"
-        )
+        applicationContext.sendMessages("onStartCommand()")
         return super.onStartCommand(intent, flags, startId)
     }
 
 
     override fun onUnbind(intent: Intent?): Boolean {
-
-        applicationContext.sendMessages(
-            ACTION_BC_MANAGER,
-            "onUnbind()"
-        )
-
+        applicationContext.sendMessages("onUnbind()")
         return true
     }
 
     override fun onRebind(intent: Intent?) {
         super.onRebind(intent)
-        applicationContext.sendMessages(
-            ACTION_BC_MANAGER,
-            "onRebind()"
-        )
+        applicationContext.sendMessages("onRebind()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
-        applicationContext.sendMessages(
-            ACTION_BC_MANAGER,
-            "onDestroy()"
-        )
+        applicationContext.sendMessages("onDestroy()")
     }
 
 

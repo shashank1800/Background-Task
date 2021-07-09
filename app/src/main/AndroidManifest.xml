@@ -2,30 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shahankbhat.backgroundtasks">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BackgroundTasks">
-        <activity android:name=".ui.bound_service.ActivityBoundService"></activity>
-
-        <service
-            android:name=".ui.bound_service.MyBoundService"
-            android:enabled="true"
-            android:exported="true" />
+        <activity android:name=".ui.forground_service.ActivityForegroundService" />
+        <activity android:name=".ui.bound_service.ActivityBoundService" />
 
         <activity android:name=".ui.work_manager.ActivityWorkManager" />
         <activity android:name=".ui.job_intent_service.ActivityJobIntentService" />
-
-        <service
-            android:name=".ui.job_intent_service.MyJobIntentService"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-            android:name=".ui.intet_service.MyIntentService"
-            android:exported="false" />
 
         <activity android:name=".ui.intet_service.ActivityIntentService" />
         <activity android:name=".ui.local_broadcast_manager.ActivityB" />
@@ -37,6 +28,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".ui.bound_service.MyBoundService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".ui.job_intent_service.MyJobIntentService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <service
+            android:name=".ui.intet_service.MyIntentService"
+            android:exported="false" />
+
+        <service
+            android:name=".ui.forground_service.MyForegroundService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 
 </manifest>

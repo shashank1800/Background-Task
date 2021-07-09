@@ -25,6 +25,13 @@
             android:text="Intent Service" />
 
         <Button
+            android:id="@+id/btn_foreground_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="Foreground Service" />
+
+        <Button
             android:id="@+id/btn_job_intent_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

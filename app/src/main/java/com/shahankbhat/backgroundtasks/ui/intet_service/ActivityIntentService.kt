@@ -10,12 +10,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.shahankbhat.backgroundtasks.R
+import com.shahankbhat.backgroundtasks.util.ACTION_BC_MANAGER
+import com.shahankbhat.backgroundtasks.util.regLocalBroadcastManager
+import com.shahankbhat.backgroundtasks.util.unRegLocalBroadcastManager
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ActivityIntentService : AppCompatActivity() {
 
-    private lateinit var localBroadcastManager: LocalBroadcastManager
     private lateinit var logBoardTextView:TextView
 
     var jobCount = 0
@@ -39,12 +41,8 @@ class ActivityIntentService : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intent_service)
 
-        localBroadcastManager = LocalBroadcastManager.getInstance(this)
-
-        // Register Local BroadCast Receiver
-        localBroadcastManager.registerReceiver(
-            mMessageReceiver,
-            IntentFilter(ACTION_BC_MANAGER_INTENT_SERVICE)
+        applicationContext.regLocalBroadcastManager(
+            mMessageReceiver
         )
 
         logBoardTextView = findViewById(R.id.log_board)
@@ -56,6 +54,8 @@ class ActivityIntentService : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        localBroadcastManager.unregisterReceiver(mMessageReceiver)
+        applicationContext.unRegLocalBroadcastManager(
+            mMessageReceiver
+        )
     }
 }
