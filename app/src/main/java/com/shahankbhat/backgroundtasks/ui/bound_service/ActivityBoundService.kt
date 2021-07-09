@@ -7,6 +7,7 @@ import android.os.IBinder
 import androidx.databinding.DataBindingUtil
 import com.shahankbhat.backgroundtasks.R
 import com.shahankbhat.backgroundtasks.databinding.ActivityBoundServiceBinding
+import com.shahankbhat.backgroundtasks.ui.intet_service.MyIntentService
 import com.shahankbhat.backgroundtasks.util.regLocalBroadcastManager
 import com.shahankbhat.backgroundtasks.util.unRegLocalBroadcastManager
 import java.text.SimpleDateFormat
@@ -33,21 +34,48 @@ class ActivityBoundService : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_bound_service)
-        applicationContext.regLocalBroadcastManager(ACTION_BC_MANAGER, mMessageReceiver)
+        applicationContext.regLocalBroadcastManager(mMessageReceiver)
 
-        binding.btnCallBoundService.setOnClickListener {
+        val myBoundService = Intent(applicationContext, MyBoundService::class.java)
 
-            val timerService = Intent(applicationContext, MyBoundService::class.java)
+        binding.btnStartService.setOnClickListener {
+            startService(myBoundService)
+        }
+
+        binding.btnBindService.setOnClickListener {
             bindService(
-                timerService,
+                myBoundService,
                 serviceConnection,
                 Context.BIND_AUTO_CREATE
             )
-
         }
 
-        binding.btnCancelBoundService.setOnClickListener {
+        binding.btnUnbindService.setOnClickListener {
             unbindService(serviceConnection)
+        }
+
+        binding.btnStopService.setOnClickListener {
+            stopService(myBoundService)
+        }
+
+        binding.btnCancelBoundService2.setOnClickListener {
+            unbindService(serviceConnection)
+        }
+
+        binding.btnCallBoundService1.setOnClickListener {
+            bindService(
+                myBoundService,
+                serviceConnection,
+                Context.BIND_AUTO_CREATE
+            )
+        }
+
+        binding.btnCancelBoundService2.setOnClickListener {
+            unbindService(serviceConnection)
+        }
+
+        binding.btnClear.setOnClickListener {
+            binding.logBoard.text = ""
         }
     }
 
@@ -62,6 +90,7 @@ class ActivityBoundService : AppCompatActivity() {
         override fun onServiceDisconnected(name: ComponentName?) {
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         applicationContext.unRegLocalBroadcastManager(mMessageReceiver)

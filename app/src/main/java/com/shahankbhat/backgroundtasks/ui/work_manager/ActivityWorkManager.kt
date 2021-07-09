@@ -10,7 +10,6 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.shahankbhat.backgroundtasks.R
 import com.shahankbhat.backgroundtasks.databinding.ActivityWorkManagerBinding
-import com.shahankbhat.backgroundtasks.ui.job_intent_service.JOB_INTENT_SERVICE_ACTION
 import com.shahankbhat.backgroundtasks.util.regLocalBroadcastManager
 import com.shahankbhat.backgroundtasks.util.unRegLocalBroadcastManager
 import java.text.SimpleDateFormat
@@ -19,14 +18,13 @@ import java.util.*
 class ActivityWorkManager : AppCompatActivity() {
 
     private lateinit var binding: ActivityWorkManagerBinding
-    private var workManager =  WorkManager.getInstance(this)
+    private var workManager = WorkManager.getInstance(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_work_manager)
 
         applicationContext.regLocalBroadcastManager(
-            JOB_INTENT_SERVICE_ACTION,
             mMessageReceiver
         )
 
